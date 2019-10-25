@@ -1,0 +1,28 @@
+/**
+ *算法题目
+392.判断子序列
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int m = s.size();
+        int n = t.size();
+        if(m > n)
+            return false;
+        int i = 0 , j = 0;
+        while(j < m && i < n)
+        {
+            if(s[j] == t[i])
+            {
+                j++;
+            }
+            i++;
+        }
+        if(j == m)
+            return true;
+        else return false;
+        
+    }
+};
