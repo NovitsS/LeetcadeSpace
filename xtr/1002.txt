@@ -1,0 +1,38 @@
+/**
+ *算法题目
+1002.查找常用字符
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& A) {
+        vector<string> res;
+        int n = A.size();
+        vector<int> a(26 , 0);
+        vector<vector<int>> b(n , a);
+        for(int i = 0 ; i < n ; i++)
+        {
+            for(char c : A[i])
+                b[i][c - 'a']++;
+        }
+        for(int j = 0 ; j < 26 ; j++)
+        {
+            int sum = INT_MAX;
+            for(int i = 0 ; i < n ; i++)
+            {
+                sum = min(sum , b[i][j]);
+            }
+            for(int k = 0 ; k < sum ; k++)
+            {
+                char t = 'a' + j;
+                stringstream stream;
+                stream<<t;
+                string s = stream.str();
+                res.push_back(s);
+           }
+        }
+        return res;
+        
+    }
+};
