@@ -1,0 +1,30 @@
+/**
+ *算法题目
+728.自然数
+ */
+
+//TODO:code
+class Solution {
+public:
+    static bool f(int n)
+    {
+        int N = n;
+        while(n != 0)
+        {
+            int m = n % 10;
+            if(m == 0 || N%m != 0)
+                return false;
+            n = n / 10;
+        }
+        return true;
+    }
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> res;
+        for(int i = left ; i <= right ; i++)
+        {
+            if(f(i))
+                res.push_back(i);
+        }
+        return res;
+    }
+};
