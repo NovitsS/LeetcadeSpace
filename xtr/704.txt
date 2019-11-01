@@ -1,0 +1,30 @@
+/**
+ *算法题目
+704.二分查找
+ */
+
+//TODO:code
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int base = 0 , top = nums.size() - 1;
+        int mid = (base + top)/2;
+        while(base <= top)
+        {
+            mid = (base + top)/2;
+            if(nums[mid] == target)
+            {
+                return mid;
+            }
+            else if(nums[mid] > target)
+            {
+                top = mid - 1;
+            }
+            else
+            {
+                base = mid + 1;
+            }
+        }
+        return -1;
+    }
+};
