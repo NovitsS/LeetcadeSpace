@@ -1,0 +1,21 @@
+/**
+ *算法题目
+476.数字的补数
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findComplement(int num) {
+        int i = 0;
+        int n = num;
+        while(n != 0 )
+        {
+            i++;
+            n = n / 2;
+        }
+        long a = pow(2 , i) - 1;
+        return int(a - num);
+        
+    }
+};
