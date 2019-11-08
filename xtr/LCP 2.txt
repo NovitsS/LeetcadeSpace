@@ -1,0 +1,39 @@
+/**
+ *算法题目
+LCP 2.分式化简
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> fraction(vector<int>& cont) {
+        int n = 1 , m = cont.back();
+        for(int i = cont.size() - 2 ; i > 0 ; i--)
+        {
+            int t = n;
+            n = m;
+            m = cont[i]*m + t;
+        }
+        if(cont.size() != 1)
+            n = cont[0]*m + n;
+        else 
+        {
+            n = m , m = 1;
+        }
+        int g = gcd(n , m);
+        n = n/g;
+        m = m/g;
+        vector<int> res {n , m};
+        return res;
+    }
+    
+   int gcd(int a,int b)
+   {	
+      int c;
+	  c=(a>b)?b:a;
+	  while(a%c!=0||b%c!=0)
+          c--;
+	  return c;
+   }
+
+};
