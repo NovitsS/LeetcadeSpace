@@ -1,0 +1,19 @@
+/**
+ *算法题目
+201.数字范围按位与
+ */
+
+//TODO:code
+class Solution {
+public:
+    int rangeBitwiseAnd(int m, int n) {
+        int i = 0;
+        while(m != n)
+        {
+            m = m >> 1;
+            n = n >> 1;
+            i++;
+        }
+        return int(m<<i);
+    }
+};
