@@ -1,0 +1,53 @@
+/**
+ *算法题目
+221.最大正方形
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maximalSquare(vector<vector<char>>& matrix) {
+        int res = 0;
+        int l = 0;
+        for(int i = 0 ; i < matrix.size() ; i++)
+        {
+            if(i + l >= matrix.size())
+                break;
+            for(int j = 0 ; j < matrix[i].size() ; j++)
+            {
+                if(j + l >= matrix[i].size())
+                    break;
+                if(matrix[i][j] == '1')
+                {
+                    int k = 1;
+                    int flag = 1;
+                    while(i + k < matrix.size() && j + k < matrix[i].size())
+                    {
+                        for(int  ii = i + k , jj = j ; flag == 1 && jj <= j + k ; jj++ )
+                        {
+                            if(matrix[ii][jj] != '1')
+                            {
+                                flag = 0;
+                                break;
+                            }
+                        }
+                        for(int  ii = i , jj = k + j ; flag == 1 && ii <= i + k ; ii++ )
+                        {
+                            if(matrix[ii][jj] != '1')
+                            {
+                                flag = 0;
+                                break;
+                            }
+                        }
+                        if(flag == 0)
+                            break;
+                        k++;
+                    }
+                    l = max(l , k);
+                }
+
+            }
+        }
+        return l*l;
+    }
+};
