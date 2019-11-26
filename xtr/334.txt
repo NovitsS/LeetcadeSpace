@@ -1,0 +1,40 @@
+/**
+ *算法题目
+334.递增的三元子序列
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool increasingTriplet(vector<int>& nums) {
+        if(nums.size() < 3)
+            return false;
+        int a = 0;
+        int b = 0;
+        int r = 0;
+        for(int i = 1 ; i < nums.size() ; i++)
+        {
+            if(nums[i] > nums[r] && nums[i] <= nums[b])
+            {
+                b = i;
+                a = r;
+            }
+            if(nums[i] > nums[a])
+            {
+                if(a == b)
+                    b = i;
+                if(nums[i] > nums[b])
+                    return true;
+                else
+                {
+                    b = i;
+                }
+            }
+            else if(nums[i] < nums[a])
+            {
+                r = i;
+            }
+        }
+        return false;
+    }
+};
