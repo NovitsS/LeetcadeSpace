@@ -1,0 +1,33 @@
+/**
+ *算法题目
+888.公平的糖果交换
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> fairCandySwap(vector<int>& A, vector<int>& B) {
+        vector<int> ans(2 , 0);
+        int suma = 0 , sumb = 0;
+        int d;
+        for(int i : A)
+            suma += i;
+        for(int i : B)
+            sumb += i;
+        d = (suma - sumb)/2;
+        for(int i = 0 ; i < A.size() ; i++)
+        {
+            for(int j = 0 ; j < B.size() ; j++)
+            {
+                if(A[i] - B[j] == d)
+                {
+                    ans[0] = A[i];
+                    ans[1] = B[j];
+                    return ans;
+                }
+            }
+        }
+        
+        return ans;
+    }
+};
