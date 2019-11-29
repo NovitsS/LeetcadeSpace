@@ -1,0 +1,27 @@
+/**
+ *算法题目
+153.寻找旋转排序数组中的最小值
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int base = 0 , top = nums.size() - 1;
+        if(nums[base] < nums[top])
+            return nums[0];
+        int mid = (base + top)/2;
+        while(base < top)
+        {
+            if(nums[mid] > nums[mid + 1])
+                return nums[mid + 1];
+            if(nums[mid] < nums[mid - 1])
+                return nums[mid];
+            if(nums[mid] > nums[0])
+                base = mid + 1;
+            else top = mid - 1;
+            mid = (base + top)/2;
+        }
+        return nums[0];
+    }
+};
