@@ -1,0 +1,21 @@
+/**
+ *算法题目
+190.颠倒二进制位
+ */
+
+//TODO:code
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+        uint32_t res = 0;
+        int i = 0;
+        while(i <32)
+        {
+            res = res << 1;
+            res = res + n%2;
+            n = n >> 1;
+            i++;
+        }
+        return res;
+    }
+};
