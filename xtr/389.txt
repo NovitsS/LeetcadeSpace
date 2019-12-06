@@ -1,0 +1,18 @@
+/**
+ *算法题目
+389.找不同
+ */
+
+//TODO:code
+class Solution {
+public:
+    char findTheDifference(string s, string t) {
+        int res = 0;
+        for(int i = 0 ; i < s.size() ; i++)
+        {
+            res = res - int(s[i]) + int(t[i]);
+        }   
+        cout<<res;
+        return char(res + t[t.size() - 1]);
+    }
+};
