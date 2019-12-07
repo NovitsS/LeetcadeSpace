@@ -1,0 +1,30 @@
+/**
+ *算法题目
+415.字符串相加
+ */
+
+//TODO:code
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        int n1 = num1.size() , n2 = num2.size();
+        string res(max(n1 , n2) + 1 , '0');
+        for(int i = num1.size() - 1 , j = num2.size() - 1, k = res.size() - 1 ; i >= 0 || j >= 0 ; i-- , j-- , k--)
+        {
+            if(i >= 0 && j >= 0)
+                res[k] =  res[k] - '0' + num1[i] + num2[j] - '0';
+            else if(j < 0)
+                res[k] = res[k] - '0' + num1[i];
+            else res[k] = res[k] - '0' + num2[j];
+            if(res[k] > '9')
+            {
+                res[k - 1] = res[k - 1] + int(res[k] - '0')/10;
+                res[k] = int(res[k] - '0')%10 + '0';
+            }
+                
+        }
+        if(res[0] == '0' && res.size() != 1)
+            res.erase(res.begin());
+        return res;
+    }
+};
