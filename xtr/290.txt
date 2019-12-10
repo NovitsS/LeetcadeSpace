@@ -1,0 +1,38 @@
+/**
+ *算法题目
+290.单词规律
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+        vector<string> flag(26 , "");
+        int k = 0 ,sum = 0;
+        for(int i = 0 ; i < pattern.size() ; i++)
+        {
+            string s = "";
+            for(int j = k ; j < str.size() && str[j] != ' ' ; j++ , k++)
+            {
+                s = s + str[j];
+            }
+            k++;
+            sum++;
+            for(int j = 0 ; j < 26 ; j++)
+            {
+                if(flag[j] == s)
+                {
+                    if(pattern[i] - 'a' != j)
+                        return false;
+                }
+            }
+            if(flag[pattern[i] - 'a'] == "")
+                flag[pattern[i] - 'a'] = s;
+            else if(flag[pattern[i] - 'a'] != s)
+                return false;
+        }
+        if(sum != pattern.size() || k < str.size())
+            return false;
+        return true;
+    }
+};
