@@ -1,0 +1,21 @@
+/**
+ *算法题目
+441.排列硬币
+ */
+
+//TODO:code
+class Solution {
+public:
+    int arrangeCoins(int n) {
+        long sum = 0;
+        int k = 0;
+        while(sum < n)
+        {
+           sum = sum + k + 1;
+           k++;
+        }
+        if(sum == n)
+            return k;
+        return k - 1;
+    }
+};
