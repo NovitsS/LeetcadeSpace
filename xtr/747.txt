@@ -1,0 +1,31 @@
+/**
+ *算法题目
+747.至少是其他数字两倍的最大数
+ */
+
+//TODO:code
+class Solution {
+public:
+    int dominantIndex(vector<int>& nums) {
+        int maxnum = nums[0];
+        int res = 0;
+        if(nums.size() == 1)
+            return 0;
+        for(int i = 1 ; i < nums.size() ; i++)
+        {
+            if(nums[i] > maxnum)
+            {
+               if(nums[i] >= 2*maxnum)
+                   res = i;
+                else res = -1;
+               maxnum = nums[i];
+            }
+            else
+            {
+                if(nums[i]*2 > maxnum)
+                    res = -1;
+            }
+        }
+        return res;
+    }
+};
