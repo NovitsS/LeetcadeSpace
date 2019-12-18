@@ -1,0 +1,14 @@
+/**
+ *算法题目
+367.有效的完全平方数
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        long i;
+        for(i = 1 ; i * i < num ; i++);
+        return i * i == num;
+    }
+};
