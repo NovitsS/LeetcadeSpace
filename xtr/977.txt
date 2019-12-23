@@ -1,0 +1,16 @@
+/**
+ *算法题目
+有序数组的平方
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& A) {
+        vector<int> res;
+        for(int n : A)
+            res.push_back(n * n);
+        sort(res.begin() , res.end());
+        return res;
+    }
+};
