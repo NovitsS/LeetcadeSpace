@@ -1,0 +1,27 @@
+/**
+ *算法题目
+868.二进制间距
+ */
+
+//TODO:code
+class Solution {
+public:
+    int binaryGap(int N) {
+        int i = 0, j = 0 , k = 0;
+        int max_res = 0;
+        while(N != 0)
+        {
+            i++;
+            if(N%2 == 1)
+            {
+                k = j;
+                j = i;
+                //cout<<k<<" "<<j<<endl;
+                if(k != 0)
+                    max_res = max(max_res , j - k);
+            }
+            N = N/2;
+        }
+        return max_res;
+    }
+};
