@@ -1,0 +1,19 @@
+/**
+ *算法题目
+342.4的幂
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool isPowerOfFour(int num) {
+        long s = 1;
+        for(int i = 0 ; s <= num ; i++)
+        {
+            if(s == num)
+                return true;
+            s = s * 4;
+        }
+        return false;
+    }
+};
