@@ -1,0 +1,56 @@
+/**
+ *算法题目
+500.键盘行
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> res;
+        vector<int> a (26 , 0);
+        a[0] = 1;//a
+        a[1] = 2;//b
+        a[2] = 2;//c
+        a[3] = 1;//d
+        a[4] = 0;//e
+        a[5] = 1;//f
+        a[6] = 1;//g
+        a[7] = 1;//h
+        a[8] = 0;//i
+        a[9] = 1;//j
+        a[10] = 1;//k
+        a[11] = 1;//l
+        a[12] = 2;//m
+        a[13] = 2;//n
+        a[14] = 0;//o
+        a[15] = 0;//p
+        a[16] = 0;//q
+        a[17] = 0;//r
+        a[18] = 1;//s
+        a[19] = 0;//t
+        a[20] = 0;//u
+        a[21] = 2;//v
+        a[22] = 0;//w
+        a[23] = 2;//x
+        a[24] = 0;//y
+        a[25] = 2;//z
+        for(int i = 0 ; i < words.size() ; i++)
+        {
+            int flag = 1;
+            int k = (words[i][0] >= 'a' && words[i][0] <= 'z')? a[words[i][0] - 'a'] : a[words[i][0] - 'A'];
+            for(int j = 0 ; j < words[i].size() ; j++)
+            {
+                int kk = (words[i][j] >= 'a' && words[i][j] <= 'z')? a[words[i][j] - 'a'] : a[words[i][j] - 'A'];
+                if(k != kk)
+                {
+                    flag = 0;
+                    break;
+                }
+            }
+            if(flag == 1)
+                res.push_back(words[i]);
+        }
+        return res;
+    }
+};
