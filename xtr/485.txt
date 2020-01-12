@@ -1,0 +1,21 @@
+/**
+ *算法题目
+485.最大连续1的个数
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findMaxConsecutiveOnes(vector<int>& nums) {
+        int res = 0;
+        int maxres = 0;
+        for(int i : nums)
+        {
+            if(i == 1)
+                res++;
+            else res = 0;
+            maxres = max(res , maxres);
+        }
+        return maxres;
+    }
+};
