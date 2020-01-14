@@ -1,0 +1,23 @@
+/**
+ *算法题目
+504.七进制数
+ */
+
+//TODO:code
+class Solution {
+public:
+    string convertToBase7(int num) {
+        if(num == 0)
+            return "0";
+        string res = "";
+        int n = abs(num);
+        while(n != 0)
+        {
+            res = char(n%7 + '0') + res;
+            n = n/7;
+        }
+        if(num > 0)
+            return res;
+        return "-"+res;
+    }
+};
