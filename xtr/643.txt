@@ -1,0 +1,24 @@
+/**
+ *算法题目
+643.子数组最大平均数
+ */
+
+//TODO:code
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int maxsum = INT_MIN;
+        int sum = 0;
+        for(int i = 0 ; i < k ; i++)
+        {
+            sum += nums[i];
+        }
+        maxsum = sum;
+        for(int i = k ; i < nums.size() ; i++)
+        {
+            sum = sum - nums[i - k] + nums[i];
+            maxsum = max(sum , maxsum);
+        }
+        return double(maxsum*1.0/k);
+    }
+};
