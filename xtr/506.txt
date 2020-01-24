@@ -1,0 +1,53 @@
+/**
+ *算法题目
+506.相对名次
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> findRelativeRanks(vector<int>& nums) {
+        vector<string> res(nums.size() , "");
+        if(nums.size() == 1)
+        {
+            res[0] = "Gold Medal";
+            return res;
+        }
+        if(nums.size() == 2)
+        {
+            if(nums[0] > nums[1])
+            {
+              res[0] = "Gold Medal";
+              res[1] = "Silver Medal";
+            }
+            else
+            {    
+              res[0] = "Silver Medal";
+              res[1] = "Gold Medal";
+            }
+            return res;
+        }
+        vector<int> n(nums);
+        sort(n.begin() , n.end());
+        for(int i = 0 ; i < n.size() ; i++)
+        {
+            int j;
+            for(j = 0 ; j < nums.size() ; j++)
+            {
+                if(n[i] == nums[j])
+                {
+                    break;
+                }
+            }
+            if(i == n.size() - 1)
+                res[j] = "Gold Medal";
+            else if(i == n.size() - 2)
+                res[j] = "Silver Medal";
+            else if(i == n.size() - 3)
+                res[j] = "Bronze Medal";
+            else res[j] = to_string(nums.size() - i);
+        }
+        return res;
+        
+    }
+};

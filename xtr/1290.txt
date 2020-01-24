@@ -1,0 +1,28 @@
+/**
+ *算法题目
+1290.二进制链表转整数
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int getDecimalValue(ListNode* head) {
+        ListNode* p;
+        p = head;
+        int res = 0;
+        while(p != NULL)
+        {
+            res = res*2 + p->val;
+            p = p->next;
+        }
+        return res;
+    }
+};
