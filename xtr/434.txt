@@ -1,0 +1,22 @@
+/**
+ *算法题目
+434.字符串中的单词数
+ */
+
+//TODO:code
+class Solution {
+public:
+    int countSegments(string s) {
+        int res = 0;
+        for(int i = 0 ; i < s.size() ; i++)
+        {
+            if((s[i] == ' '&& i != 0) || (s[i] != ' ' && i == s.size() - 1))
+            {
+                res++;       
+            }
+            while(i < s.size() - 1 && s[i] == ' ' && s[i+1] == ' ')
+                i++;
+        }
+        return res;
+    }
+};
