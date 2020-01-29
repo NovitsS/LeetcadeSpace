@@ -1,0 +1,41 @@
+/**
+ *算法题目
+884.两句话中的不常见单词
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> uncommonFromSentences(string A, string B) {
+        vector<string> nums;
+        vector<string> word_result;
+        string C = A + " " + B + " ";  //连接A、B字符串
+        string temp = "";
+        for(int i = 0;i<C.size();i++)
+        {
+            if(C[i]!=' ')   //注意此处是单引号
+            {
+                temp += C[i];
+            }
+            else
+            {
+                nums.push_back(temp);    //存每个单词
+                temp = "";
+            }
+        }
+        sort(nums.begin(),nums.end());                //对数组中的单词进行排序
+        
+        if(nums[0]!=nums[1])                          //查看第一个单词是否是不常见的单词
+            word_result.push_back(nums[0]);
+        if(nums[nums.size()-1]!=nums[nums.size()-2])  //查看最后一个单词是否是不常见的单词   
+            word_result.push_back(nums[nums.size()-1]);
+        for(int i = 1;i<nums.size()-1;i++)            //遍历其余单词是否是不常见的单词
+        {
+            if(nums[i]!=nums[i+1] && nums[i]!=nums[i-1])
+            {
+                word_result.push_back(nums[i]);
+            }
+        }
+        return word_result;
+    }
+};
