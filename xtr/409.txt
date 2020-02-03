@@ -1,0 +1,33 @@
+/**
+ *算法题目
+409.最长回文串
+ */
+
+//TODO:code
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        vector<int> a (52 , 0);
+        for(int i = 0 ; i < s.size() ; i++)
+        {
+            if(s[i] >= 'a' && s[i] <= 'z')
+                a[s[i] - 'a']++;
+            else a[s[i] - 'A' + 26]++;
+        }
+        int flag = 1 , res = 0;
+        for(int i = 0 ; i < a.size() ; i++)
+        {
+            if(a[i]%2 == 1)
+            {
+                if(flag == 1)
+                {
+                   res += a[i];
+                   flag = 0;
+                }  
+                else res += a[i] - 1;
+            }
+            else res += a[i];
+        }
+        return res;
+    }
+};
