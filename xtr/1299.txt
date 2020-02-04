@@ -1,0 +1,20 @@
+/**
+ *算法题目
+1299.将每个元素替换为右侧最大元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+        int maxnum = arr[arr.size() - 1];
+        arr[arr.size() - 1] = -1;
+        for(int i = arr.size() - 2 ; i >= 0 ; i--)
+        {
+           int t = arr[i];
+           arr[i] = maxnum;
+           maxnum = max(t , maxnum);
+        }
+        return arr;
+    }
+};
