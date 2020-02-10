@@ -1,0 +1,30 @@
+/**
+ *算法题目
+1175.质数排列
+ */
+
+//TODO:code
+class Solution {
+public:
+    int numPrimeArrangements(int n) {
+        int mod = (int)(1e9+7);
+        int primes[] = {2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
+        int prime_num = upper_bound(primes,primes+25,n) - primes; //得到 n 以内的质数的数量
+        //求质数的排列总数 (prime_num)!
+        long long tmp1 = 1;
+        int t = prime_num;
+        while(t > 1){
+            tmp1 *= t-- ;
+            tmp1 %= mod;
+        }
+        //求非质数的排列总数 (n-prime_num)!
+        long long tmp2 = 1;
+        for(int i = 2; i <= n - prime_num;i++){
+            tmp2 *= i;
+            tmp2 %= mod;
+        }
+        // cout << tmp1 << " " << tmp2 << endl;
+        int res = (tmp1*tmp2) % mod;
+        return res;
+    }
+};
