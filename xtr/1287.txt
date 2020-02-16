@@ -1,0 +1,30 @@
+/**
+ *算法题目
+1287.有序数组中出现次数超过25%的元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr) {
+        int res = arr[0];
+        int sum = 1;
+        for(int i = 1 ; i < arr.size() ; i++)
+        {
+            if(arr[i] == res)
+            {
+                sum++;
+                if(sum * 4 > arr.size())
+                {
+                    return res;
+                }
+            }
+            else
+            {
+                res = arr[i];
+                sum = 1;
+            }
+        }
+        return res;
+    }
+};
