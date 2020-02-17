@@ -1,0 +1,31 @@
+/**
+ *算法题目
+541.反转字符串
+ */
+
+//TODO:code
+class Solution {
+public:
+    string reverseStr(string s, int k) {
+        int n = s.size();
+        int i = 0;
+        while(n >= 0)
+        {
+            if(n >= 2*k)
+            {
+                reverse(s.begin() + i , s.begin() + i + k);
+            }
+            else if(n >= k && n < 2*k)
+            {
+                reverse(s.begin() + i , s.begin() + i + k);
+            }
+            else
+            {
+                reverse(s.begin() + i , s.end());
+            }
+            n = n - 2*k;
+            i = i + 2*k;
+        }
+        return s;
+    }
+};
