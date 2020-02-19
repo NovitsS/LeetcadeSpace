@@ -1,0 +1,23 @@
+/**
+ *算法题目
+492.构造矩形
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> constructRectangle(int area) {
+        vector<int> res(2 , 0);
+        int l = sqrt(area);
+        for(int i = l ; i >= 1 ; i--)
+        {
+            if(area%i == 0)
+            {
+                res[1] = i;
+                res[0] = area/i;
+                break;
+            }
+        }
+        return res;
+    }
+};
