@@ -1,0 +1,23 @@
+/**
+ *算法题目
+05.06.整数转换
+ */
+
+//TODO:code
+class Solution {
+public:
+    int convertInteger(int A, int B) {
+        int res = 0;
+        unsigned int a = A , b = B;
+        //cout<<a<<" "<<b<<endl;
+        while(a != 0 || b != 0)
+        {
+            int i = a%2 , j = b%2;
+            if(i != j)
+                res++;
+            a = a/2;
+            b = b/2;
+        }
+        return res;
+    }
+};
