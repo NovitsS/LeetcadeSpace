@@ -1,0 +1,22 @@
+/**
+ *算法题目
+1317.将整数转换为2个无零整数的和
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> getNoZeroIntegers(int n) {
+        int i = 1;
+        int j = n - i;
+        while((to_string(i)).find("0") != string::npos || (to_string(j)).find("0") != string::npos)
+        {
+            i++;
+            j = n - i;
+        }
+        vector<int> res;
+        res.push_back(i);
+        res.push_back(j);
+        return res;
+    }
+};
