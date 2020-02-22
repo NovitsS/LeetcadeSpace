@@ -1,0 +1,27 @@
+/**
+ *算法题目
+405.数字转换为十六进制数
+ */
+
+//TODO:code
+class Solution {
+public:
+    string toHex(int num) {
+        unsigned int n = num;
+        string res;
+        if(n == 0)
+        {
+            res = "0";
+            return res;
+        }
+        while(n != 0)
+        {
+            int i = n % 16;
+            if(i >= 10)
+                res = char(i - 10 + 'a') + res;
+            else res = to_string(i) + res;
+            n = n / 16;
+        }
+        return res;
+    }
+};
