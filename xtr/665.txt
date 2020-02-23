@@ -1,0 +1,31 @@
+/**
+ *算法题目
+665.非递减数列
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool checkPossibility(vector<int>& nums) {
+        if(nums.size() == 1)
+            return true;
+        int flag = 1;
+        for(int i = 0 ; i < nums.size() - 1 ; i++)
+        {
+            if(nums[i] > nums[i+1])
+            {
+                if(flag == 0)
+                    return false;
+                else
+                {
+                    if(i-1 >= 0 && nums[i-1] > nums[i+1])
+                        nums[i+1] = nums[i];
+                    else
+                        nums[i] = nums[i+1];
+                    flag = 0;
+                }
+            }
+        }
+        return true;
+    }
+};
