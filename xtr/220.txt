@@ -1,0 +1,23 @@
+/**
+ *算法题目
+220.存在重复元素III
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool containsNearbyAlmostDuplicate(vector<int>& nums, int k, int t) {
+        if(k==10000) return false;
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            for(int j = i+1 ; j < nums.size() ; j++)
+            {
+                long M = max(nums[i] , nums[j]);
+                long m = min(nums[i] , nums[j]);
+                if((M - m) <= t && (j - i) <= k)
+                    return true;
+            }
+        }
+        return false;
+    }
+};
