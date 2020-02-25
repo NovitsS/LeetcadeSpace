@@ -1,0 +1,30 @@
+/**
+ *算法题目
+01.06.字符串压缩
+ */
+
+//TODO:code
+class Solution {
+public:
+    string compressString(string S) {
+        string res;
+        if(S.size() == 0)
+            return res;
+        int flag = 1;
+        char c = S[0];
+        for(int i = 1 ; i < S.size() ; i++)
+        {
+            if(S[i] == c)
+                flag++;
+            else
+            {
+                res += c + to_string(flag);
+                flag = 1;
+                c = S[i];
+                cout<<c<<endl;
+            }
+        }
+        res += c + to_string(flag);
+        return res.size() < S.size() ? res : S;
+    }
+};
