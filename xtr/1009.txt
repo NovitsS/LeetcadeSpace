@@ -1,0 +1,15 @@
+/**
+ *算法题目
+1009.十进制整数的反码
+ */
+
+//TODO:code
+class Solution {
+public:
+    int bitwiseComplement(int N) {
+        int r = 2;
+        while(r <= N)
+            r *= 2;
+        return r - N - 1;
+    }
+};
