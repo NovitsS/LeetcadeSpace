@@ -1,0 +1,20 @@
+/**
+ *算法题目
+1232.缀点成线
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& coordinates) {
+        int x0 = coordinates[0][0] , y0 = coordinates[0][1];
+        int x = coordinates[1][0] - x0 , y = coordinates[1][1] - y0;
+        for(int i = 2 ; i < coordinates.size() ; i++)
+        {
+            int xx = coordinates[i][0] - x0 , yy = coordinates[i][1] - y0;
+            if(x*yy != xx*y)
+                return false;
+        }
+        return true;
+    }
+};
