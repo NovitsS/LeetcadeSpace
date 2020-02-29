@@ -1,0 +1,24 @@
+/**
+ *算法题目
+686.重复叠加字符串匹配
+ */
+
+//TODO:code
+class Solution {
+public:
+    int repeatedStringMatch(string A, string B) {
+        int res = 1;
+        string a = A;
+        while(a.find(B) == string::npos)
+        {
+            if(a.size() - A.size() > B.size())
+            {
+                return -1;
+            }
+            a += A;
+            //cout<<a<<endl;
+            res++;
+        }
+        return res;
+    }
+};
