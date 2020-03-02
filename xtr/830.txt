@@ -1,0 +1,35 @@
+/**
+ *算法题目
+830.较大分组的位置
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<vector<int>> largeGroupPositions(string S) {
+        vector<vector<int>> res;
+        int cnt = 1;
+        int b = 0 , e = 0;
+        for(int i = 1 ; i <= S.size() ; i++)
+        {
+            if(i < S.size() && S[i] == S[b])
+            {
+                cnt++;
+                e = i;
+            }
+            else
+            {
+                if(cnt >= 3)
+                {
+                   vector<int> a(2 , 0);
+                   a[0] = b;
+                   a[1] = e;
+                   res.push_back(a);
+                }
+                cnt = 1;
+                b = i;
+            }
+        }
+        return res;
+    }
+};
