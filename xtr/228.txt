@@ -1,0 +1,37 @@
+/**
+ *算法题目
+228.汇总区间
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> summaryRanges(vector<int>& nums) {
+        vector<string> res;
+        if(nums.size() == 0)
+            return res;
+        int b = nums[0] , e = nums[0];
+        for(int i = 1 ; i <= nums.size() ; i++)
+        {
+            //long j = long(nums[i]) - long(e);
+            if(i < nums.size() && nums[i] > e && nums[i] == e + 1)
+            {
+                e = nums[i];
+            }
+            else
+            {
+                string a;
+                if(e > b)
+                    a = to_string(b) + "->" + to_string(e);
+                else a = to_string(b);
+                res.push_back(a);
+                if(i < nums.size())
+                {
+                   b = nums[i];
+                   e = nums[i]; 
+                }
+            }
+        }
+        return res;
+    }
+};
