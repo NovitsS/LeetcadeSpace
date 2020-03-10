@@ -1,0 +1,22 @@
+/**
+ *算法题目
+面试题21、调整数组顺序使奇数位于偶数前面
+
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> exchange(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n , 0);
+        int i = 0 , j = n - 1;
+        for(int k : nums)
+        {
+            if(k%2 == 0)
+                res[j--] = k;
+            else res[i++] = k;
+        }
+        return res;
+    }
+};

@@ -1,0 +1,17 @@
+/**
+ *算法题目
+面试题17、打印从1到最大的n位数
+
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> printNumbers(int n) {
+        long m = pow(10 , n) - 1;
+        vector<int> res;
+        for(int i = 1 ; i <= m ; i++)
+            res.push_back(i);
+        return res;
+    }
+};

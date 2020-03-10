@@ -1,0 +1,31 @@
+/**
+ *算法题目
+766.托普利茨矩阵
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix) {
+        int m = matrix.size();
+        int n = matrix[0].size();
+        int t = n - 1;
+        for(int i = 0 ; i < m ; i++)
+        {
+            for(int j = 0 ; j <= t ; j++)
+            {
+                int k = matrix[i][j];
+                int ii = i + 1 , jj = j + 1;
+                while(ii < m && jj < n)
+                {
+                    if(matrix[ii][jj] != k)
+                        return false;
+                    ii++;
+                    jj++;
+                }
+            }
+            t = 0;
+        }
+        return true;
+    }
+};

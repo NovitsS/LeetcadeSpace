@@ -1,0 +1,14 @@
+/**
+ *算法题目
+面试题40、最小的k个数
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> getLeastNumbers(vector<int>& arr, int k) {
+        sort(arr.begin() , arr.end());
+        arr.erase(arr.begin() + k , arr.end());
+        return arr;
+    }
+};
