@@ -1,0 +1,32 @@
+/**
+ *算法题目
+1013.将数组分成和相等的3个部分
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool canThreePartsEqualSum(vector<int>& A) {
+        int sum = 0;
+        for(int k : A)
+            sum += k;
+        if(sum%3 != 0)
+            return false;
+        int m = sum/3;
+        int i = 0 , j = A.size() - 1;
+        int l = A[i] , r = A[j];
+        i++;
+        j--;
+        while(i < j && (l != m || r != m))
+        {
+           if(l != m)
+               l += A[i++];
+           if(r != m)
+               r += A[j--];
+        }
+        //cout<<l<<" "<<r<<" "<<i<<" "<<j;
+        if(l == m && r == m && i <= j)
+            return true;
+        return false;
+    }
+};
