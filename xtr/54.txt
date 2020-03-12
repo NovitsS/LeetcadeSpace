@@ -1,0 +1,42 @@
+/**
+ *算法题目
+54.螺旋矩阵
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> spiralOrder(vector<vector<int>>& matrix) {
+        vector<int> res;
+        int t = 0 , b = matrix.size() - 1;
+        if(b < 0)
+            return res;
+        int l = 0 , r = matrix[0].size() - 1;
+        int i = t , j = l;
+        while(l <= r || t <= b)
+        {
+            i = t;
+            for(j = l ; j <= r ; j++)
+                res.push_back(matrix[i][j]);
+            j--;
+            t++;
+            if(t > b) break;
+            for(i = t ; i <= b ; i++)
+                res.push_back(matrix[i][j]);
+            i--;
+            r--;
+            if(l > r) break;
+            for(j = r ; j >= l ; j--)
+                res.push_back(matrix[i][j]);
+            j++;
+            b--;
+            if(t > b) break;
+            for(i = b ; i >= t ; i--)
+                res.push_back(matrix[i][j]);
+            cout<<i<<" "<<j<<endl;
+            l++; 
+            if(l > r) break;
+        }
+        return res;
+    }
+};
