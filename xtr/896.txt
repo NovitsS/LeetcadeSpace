@@ -1,0 +1,22 @@
+/**
+ *算法题目
+896.单调数列
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        int flag0 = 0 , flag1 = 0;
+        for(int i = 1 ; i < A.size() ; i++)
+        {
+            if(A[i-1] < A[i])
+                flag0 = 1;
+            else if(A[i-1] > A[i])
+                flag1 = 1;
+        }
+        if(flag0 == 1 && flag1 == 1)
+            return false;
+        return true;
+    }
+};
