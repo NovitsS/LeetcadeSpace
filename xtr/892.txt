@@ -1,0 +1,23 @@
+/**
+ *算法题目
+892、三维形体的表面积
+ */
+
+//TODO:code
+class Solution {
+public:
+    int surfaceArea(vector<vector<int>>& grid) {
+        int l = 0 , f = 0;
+        int res = 0;
+        for(int i = 0 ; i < grid.size() ; i++)
+        {
+            for(int j = 0 ; j < grid[i].size(); j++)
+            {
+               l = j==0 ? 0 : grid[i][j-1];
+               f = i==0 ? 0 : grid[i-1][j];
+               res = res + grid[i][j]*4 + (grid[i][j] == 0 ? 0 : 2) - min(l , grid[i][j])*2 - min(f , grid[i][j])*2;
+            }
+        }
+        return res;
+    }
+};
