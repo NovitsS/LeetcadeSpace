@@ -1,0 +1,21 @@
+/**
+ *算法题目
+17.01不用加号的加法
+ */
+
+//TODO:code
+class Solution {
+public:
+    int add(int a, int b) {
+        unsigned int aa = a , bb = b;
+        unsigned int sum = 0 , carry = 0;
+        while(bb != 0)
+        {
+            sum = aa ^ bb ;
+            carry = (aa & bb)<<1;
+            aa = sum;
+            bb = carry;
+        }
+        return int(aa);
+    }
+};
