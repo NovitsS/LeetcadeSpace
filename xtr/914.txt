@@ -1,0 +1,32 @@
+/**
+ *算法题目
+914、卡牌分组
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool hasGroupsSizeX(vector<int>& deck) {
+        vector<int> h(10000 , 0);
+        for(int i : deck)
+            h[i]++;
+        int g = -1;
+        for(int i = 0 ; i < h.size() ; i++)
+        {
+            if(h[i] > 0)
+            {
+                if(g == -1)
+                    g = h[i];
+                else
+                    g = gcd(g , h[i]);
+            }
+            if(g == 1)
+                return false;
+        }
+        return true;
+    }
+    int gcd(int a , int b)
+    {
+        return b == 0 ? a : gcd(b , a%b);
+    }
+};
