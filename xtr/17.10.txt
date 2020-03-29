@@ -1,0 +1,33 @@
+/**
+ *算法题目
+面试题17.10、主要元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        if(nums.size() == 0)
+            return -1;
+        int flag = 0;
+        int res = nums[0];
+        for(int i = 1 ; i < nums.size() ; i++)
+        {
+            if(res == nums[i])
+                flag++;
+            else flag--;
+            if(flag < 0)
+            {
+                res = nums[i];
+                flag = 0;
+            }
+        }
+        flag = 0;
+        for(int k : nums)
+        {
+            if(k == res)
+               flag++; 
+        }
+        return flag < (nums.size()+1)/2 ? -1 : res;
+    }
+};
