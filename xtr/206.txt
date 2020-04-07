@@ -1,0 +1,36 @@
+/**
+ *算法题目
+206、反转链表
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* p;
+        p = head;
+        vector<int> in;
+        while(p)
+        {
+            in.push_back(p->val);
+            p = p->next;
+        }
+        int i = in.size() - 1;
+        p = head;
+        while(p)
+        {
+            p->val = in[i];
+            p = p->next;
+            i--;
+        }
+        return head;
+    }
+};
