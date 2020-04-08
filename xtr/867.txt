@@ -1,0 +1,22 @@
+/**
+ *算法题目
+867、转置矩阵
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& A) {
+        vector<vector<int>> res;
+        for(int j = 0 ; j < A[0].size() ; j++)
+        {
+            vector<int> k;
+            for(int i = 0 ; i < A.size() ; i++)
+            {
+                k.push_back(A[i][j]);
+            }
+            res.push_back(k);
+        }
+        return res;
+    }
+};
