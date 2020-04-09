@@ -1,0 +1,24 @@
+/**
+ *算法题目
+1207、独一无二的出现次数
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        vector<int> in (2001 , 0);
+        for(int k : arr)
+            in[k+1000]++;
+        sort(in.begin() , in.end());
+        for(int i = 1 ; i < in.size() ; i++)
+        {
+            if(in[i] > 0)
+            {
+                if(in[i] == in[i - 1])
+                    return false;
+            }
+        }
+        return true;
+    }
+};
