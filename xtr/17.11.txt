@@ -1,0 +1,33 @@
+/**
+ *算法题目
+17.11、单词距离
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findClosest(vector<string>& words, string word1, string word2) {
+        int in1 = -1 , in2 = -1;
+        int res = INT_MAX;
+        for(int i = 0 ; i < words.size() ; i++)
+        {
+            if(words[i] == word1)
+            {
+                in1 = i;
+                if(in2 > 0)
+                {
+                    res = min(abs(in1 - in2) , res);
+                }
+            }
+            else if(words[i] == word2)
+            {
+                in2 = i;
+                if(in1 > 0)
+                {
+                   res = min(abs(in1 - in2) , res); 
+                }
+            }
+        }
+        return res;
+    }
+};
