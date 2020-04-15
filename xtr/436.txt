@@ -1,0 +1,35 @@
+/**
+ *算法题目
+436、寻找右区间
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> findRightInterval(vector<vector<int>>& intervals) {
+        vector<int> res;
+        vector<vector<int>> in = intervals;
+        for(int i = 0 ; i < in.size() ; i++)
+            in[i][1] = i;
+        sort(in.begin() , in.end());
+        for(int i = 0 ; i < intervals.size() ; i++)
+        {
+            int l = 0 , h = in.size() - 1;
+            int mid = (l + h)/2;
+            int flag = -1;
+            while(l < h)
+            {
+                if(in[mid][0] >= intervals[i][1])
+                    h = mid;
+                else l = mid + 1;
+                mid = (l + h)/2;
+            }
+            //cout<<mid<<" " << in[mid][1]<<endl;
+            if(in[mid][1] != i && in[mid][0] >= intervals[i][1])
+                flag = in[mid][1];
+            res.push_back(flag);
+        }
+           
+        return res;
+    }
+};
