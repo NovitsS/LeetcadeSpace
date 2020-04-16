@@ -1,0 +1,54 @@
+/**
+ *算法题目
+680、验证回文字符串II
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool validPalindrome(string s) {
+        int flag = 1;
+        for(int i = 0 , j = s.size() - 1 ; i < j ; i++ , j--)
+        {
+            if(s[i] != s[j])
+            {
+                
+                flag--;
+                if(s[i] == s[j - 1])
+                {
+                    j--;
+                }
+                else
+                {
+                  flag--;
+                  break;
+                }
+            }
+            if(flag < 0)
+                break;
+        }
+        //cout<<flag<<endl;
+        if(flag < 0)
+        {
+            flag = 1;
+           for(int i = 0 , j = s.size() - 1 ; i < j ; i++ , j--)
+           {
+            if(s[i] != s[j])
+            {
+                flag--;
+                if(s[i + 1] == s[j])
+                {
+                    i++;
+                }
+                else
+                {
+                  flag--;
+                }
+            }
+            if(flag < 0)
+                return false;
+           }
+        }
+        return true;
+    }
+};
