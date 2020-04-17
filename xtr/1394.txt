@@ -1,0 +1,22 @@
+/**
+ *算法题目
+1394、找出数组中的幸运数
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findLucky(vector<int>& arr) {
+        vector<int> in (500 , 0);
+        for(int k : arr)
+        {
+            in[k - 1]++;
+        }
+        for(int i = in.size()-1 ; i >= 0 ; i--)
+        {
+            if(in[i] == i+1)
+                return in[i];
+        }
+        return -1;
+    }
+};
