@@ -1,0 +1,15 @@
+/**
+ *算法题目
+面试题05、替换空格
+ */
+
+//TODO:code
+class Solution {
+public:
+    string replaceSpace(string s) {
+        while(s.find(" ") != -1) {
+            s = s.replace(s.find(" "), 1, "%20");
+        }
+        return s;
+    }
+};
