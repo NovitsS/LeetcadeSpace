@@ -1,0 +1,81 @@
+/**
+ *算法题目
+445、两数相加II
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        vector<int> a , b;
+        ListNode* p1 = l1 , *p2 = l2;
+        while(p1 || p2)
+        {
+            if(p1)
+            {
+                a.push_back(p1->val);
+                p1 = p1->next;
+            }
+            if(p2)
+            {
+                b.push_back(p2->val);
+                p2 = p2->next;
+            }
+        }
+        int m = max(a.size() , b.size()) + 1;
+        vector<int> r(m , 0);
+        for(int i = a.size() - 1 , j = b.size() - 1 , k = m - 1; i >= 0 || j >= 0 ; i-- , j-- , k--)
+        {
+            if(i >= 0 && j >= 0)
+            {
+                r[k - 1] += (a[i] + b[j] + r[k])/10;
+                r[k] = (a[i] + b[j] + r[k])%10;
+                //cout<<a[i]<<" "<<b[j]<<" "<<r[k]<<endl;
+            }
+            else if(i >= 0 && j < 0)
+            {
+                r[k - 1] += (a[i] + r[k])/10;
+                r[k] = (a[i] + r[k])%10;
+                //cout<<a[i]<<"    "<<r[k]<<endl;
+            }
+            else if(i < 0 && j >= 0)
+            {
+                r[k - 1] += (b[j] + r[k])/10;
+                r[k] = (b[j] + r[k])%10;
+                //cout<<"   "<<b[j]<<" "<<r[k]<<endl;
+            }
+            else
+                break;
+        }
+        if(r[0] == 0)
+            r.erase(r.begin() , r.begin()+1);
+        ListNode * l = NULL;
+        ListNode * t = NULL;
+        for(int i = 0 ; i < r.size() ; i++)
+        {
+          //cout<<r[i]<<endl;
+          ListNode *p = new ListNode(r[i]);
+          if(l == NULL)
+          {
+            l = p;
+            t = p;
+          }
+          else
+          {
+             t->next = p;
+             t = p;
+          }
+          
+        }
+            
+        return l;
+    }
+};
