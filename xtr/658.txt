@@ -1,0 +1,35 @@
+/**
+ *算法题目
+658、找到k个最接近的元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        int l = 0 , r = k-1;
+        for(int i = r+1 ; i < arr.size() ; i++)
+        {
+            if(abs(arr[i] - x) < abs(arr[l] - x))
+            {
+                l++;
+                r++;
+            }
+            else if(abs(arr[i] - x) == abs(arr[l] - x))
+            {
+                if(arr[i] == arr[l])
+                {
+                    l++;
+                    r++;
+                }
+            }
+            else break;
+        }
+        vector<int> res;
+        for(int i = l ; i <= r ; i++)
+        {
+            res.push_back(arr[i]);
+        }
+        return res;
+    }
+};
