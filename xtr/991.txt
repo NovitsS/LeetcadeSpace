@@ -1,0 +1,26 @@
+/**
+ *算法题目
+991、坏了的计算器
+ */
+
+//TODO:code
+class Solution {
+public:
+    int brokenCalc(int X, int Y) {
+        int res = 0;
+        while(X < Y)
+        {
+            if(Y%2 == 0)
+            {
+                Y = Y/2;
+                res++;
+            }
+            else
+            {
+                Y = (Y + 1)/2;
+                res += 2;
+            }
+        }
+        return res + X - Y;
+    }
+};
