@@ -1,0 +1,61 @@
+/**
+ *算法题目
+面试题02.05、链表求和
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        int c = 0;
+        int s = 0;
+        ListNode *r = NULL , *t = NULL;
+        ListNode *p = l1 , *q = l2;
+        while(p || q)
+        {
+            if(p && q)
+            {
+               s = (c + p->val + q->val)%10;
+               c = (c + p->val + q->val)/10;
+               p = p->next;
+               q = q->next;
+            }
+            else if(p && !q)
+            {
+               s = (c + p->val)%10;
+               c = (c + p->val)/10;
+               p = p->next;
+            }
+            else
+            {
+               s = (c + q->val)%10;
+               c = (c + q->val)/10;
+               q = q->next;
+            }
+            ListNode *f = new ListNode(s);
+            if(!r)
+            {
+                r = f;
+                t = f;
+            }
+            else
+                t->next = f;
+            t = f;
+        }
+        if(c > 0)
+        {
+           ListNode *f = new ListNode(c);
+           t->next = f;
+           t = f;
+        }
+        return r;
+    }
+};
