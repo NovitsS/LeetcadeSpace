@@ -1,0 +1,71 @@
+/**
+ *算法题目
+160、相交链表
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        int la = 0 , lb = 0;
+        ListNode *p = headA , *q = headB;
+        while(p || q)
+        {
+            if(p)
+            {
+                la++;
+                p = p->next;  
+            }
+            if(q)
+            {
+                lb++;
+                q = q->next;
+            }
+        }
+        p = headA , q = headB;
+        if(la > lb)
+        {
+            int k = la - lb;
+            while(k--)
+            {
+                p = p->next;
+            }
+        }
+        else if(lb > la)
+        {
+            int k = lb - la;
+            while(k--)
+            {
+                q = q->next;
+            }
+        }
+        ListNode *r = NULL;
+        while(p || q)
+        {
+            //cout<<p->val<<" "<<q->val<<endl;
+            if(p == q)
+            {
+                if(r == NULL)
+                {
+                    r = p;
+                    break;
+                }
+            }
+            else
+            {
+                r = NULL;
+            }
+            p = p->next;
+            q = q->next;
+        }
+        return r;
+    }
+};
