@@ -1,0 +1,44 @@
+/**
+ *算法题目
+142、环形链表II
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        ListNode *f = head , *s = head;
+        ListNode *r = NULL;
+        int flag = 0;
+        while(s && f && f->next)
+        {
+            s = s->next;
+            f = f->next->next;
+            if(s == f)
+            {
+                flag = 1;
+                break; 
+            }
+                
+        }
+        if(flag == 1)
+        {
+            ListNode *p = head;
+            while(p != s)
+            {
+                p = p->next;
+                s = s->next;
+            }
+            r = s;
+        }
+        return r;
+    }
+};
