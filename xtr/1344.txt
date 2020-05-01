@@ -1,0 +1,20 @@
+/**
+ *算法题目
+1344、时钟指针的夹角
+ */
+
+//TODO:code
+class Solution {
+public:
+    double angleClock(int hour, int minutes) {
+        double hbase = ((12 + hour) - 12) * 30.0;
+        double mbase = minutes*6.0;
+        double hadd = minutes*0.5;
+        double h = hbase + hadd;
+        //cout<<h<<" "<<mbase<<endl;
+        double r = abs(mbase - h);
+        if(r > 180.0)
+            r = 360.0 - r;
+        return r;
+    }
+};
