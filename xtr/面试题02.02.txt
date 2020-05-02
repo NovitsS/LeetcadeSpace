@@ -1,0 +1,31 @@
+/**
+ *算法题目
+02.02返回倒数第k个节点
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int kthToLast(ListNode* head, int k) {
+        ListNode *f = head , *s = head;
+        while(k && f)
+        {
+            k--;
+            f = f->next;
+        }
+        while(f)
+        {
+            f = f->next;
+            s = s->next;
+        }
+        return s->val;
+    }
+};
