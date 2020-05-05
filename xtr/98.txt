@@ -1,0 +1,32 @@
+/**
+ *算法题目
+98、验证二叉搜索树
+ */
+
+//TODO:code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    long last = LONG_MIN;
+    bool isValidBST(TreeNode* root) {
+        if(!root)
+            return true;
+        if(isValidBST(root->left))
+        {
+            if(last < root->val)
+            {
+                last = root->val;
+                return isValidBST(root->right);
+            }
+        }
+        return false;
+    }
+};
