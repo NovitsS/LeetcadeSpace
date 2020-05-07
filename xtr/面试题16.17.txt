@@ -1,0 +1,21 @@
+/**
+ *算法题目
+面试题16.17、连续数列
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        if(nums.size() == 0)
+            return 0;
+        int sum = 0;
+        int res = INT_MIN;
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            sum = max(nums[i] , sum+nums[i]);
+            res = max(res , sum);
+        }
+        return res;
+    }
+};
