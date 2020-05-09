@@ -1,0 +1,25 @@
+/**
+ *算法题目
+1010、总持续时间可被60整除的歌曲
+ */
+
+//TODO:code
+class Solution {
+public:
+    int numPairsDivisibleBy60(vector<int>& time) {
+        int res = 0;
+        vector<int> in(60 , 0);
+        for(int k : time)
+        {
+            in[k%60]++;
+        }
+        for(int k : time)
+        {
+            in[k%60]--;
+            int i = k%60 ? 60 - k%60 : 0;
+            res += in[i];
+            //cout<<i<<" "<<in[i]<<endl;
+        }
+        return res;
+    }
+};
