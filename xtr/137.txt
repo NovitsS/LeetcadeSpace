@@ -1,0 +1,18 @@
+/**
+ *算法题目
+137、只出现一次的数字
+ */
+
+//TODO:code
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int a = 0 , b = 0;
+        for(int k : nums)
+        {
+            a = (a ^ k)&~b;
+            b = (b ^ k)&~a;
+        }
+        return a;
+    }
+};
