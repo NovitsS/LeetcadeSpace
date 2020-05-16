@@ -1,0 +1,47 @@
+/**
+ *算法题目
+817、链表组件
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int numComponents(ListNode* head, vector<int>& G) {
+        int res = 0;
+        ListNode *p = head;
+        int flag = 0;
+        vector<int> in(10000 , 0);
+        for(int k : G)
+            in[k]++;
+        while(p)
+        {
+            //cout<<p->val<<" "<<in[p->val]<<endl;
+            if(in[p->val] > 0)
+            {
+                if(flag == 0)
+                    flag = 1;
+                if(!p->next && flag == 1)
+                    res++;
+                in[p->val]--;
+            }
+            else
+            {
+                if(flag == 1)
+                {
+                    res++;
+                    flag = 0;
+                }
+            }
+            p = p->next;
+        }
+        return res;
+    }
+};
