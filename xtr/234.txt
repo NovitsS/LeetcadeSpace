@@ -1,0 +1,49 @@
+/**
+ *算法题目
+234、回文链表
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if(!head || !head->next)
+            return true;
+        ListNode *f = head , *s = head;
+        int flag = 0;
+        while(f && f->next)
+        {
+            s = s->next;
+            f = f->next->next;
+            if(f && !f->next)
+                flag = 1;
+        }
+        ListNode *pre = nullptr , *p = head , *nex = p->next;
+        while(p != s)
+        {
+            p->next = pre;
+            pre = p;
+            p = nex;
+            nex = nex->next;
+        }
+        head = pre;
+        if(flag)
+            s = s->next;
+        while(pre && s)
+        {
+            if(s->val != pre->val)
+                return false;
+            s = s->next;
+            pre = pre->next;
+        }
+        return true;
+    }
+};

@@ -1,0 +1,49 @@
+/**
+ *算法题目
+155、最小栈
+ */
+
+//TODO:code
+class MinStack {
+private:
+    int *elem;
+    int *minelem;
+    int t;
+public:
+    /** initialize your data structure here. */
+    MinStack() {
+        t = 0;
+        elem = new int [10000];
+        minelem = new int [10000];
+    }
+    
+    void push(int x) {
+        elem[t] = x;
+        if(t == 0)
+            minelem[t] = x;
+        else minelem[t] = min(minelem[t-1] , x);
+        //cout<<t<<" "<<elem[t]<<" "<<minelem[t]<<endl;
+        t++;
+    }
+    
+    void pop() {
+       t--; 
+    }
+    
+    int top() {
+       return elem[t-1]; 
+    }
+    
+    int getMin() {
+       return minelem[t-1];
+    }
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack* obj = new MinStack();
+ * obj->push(x);
+ * obj->pop();
+ * int param_3 = obj->top();
+ * int param_4 = obj->getMin();
+ */
