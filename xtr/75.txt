@@ -1,0 +1,30 @@
+/**
+ *算法题目
+75、颜色分类
+ */
+
+//TODO:code
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        //边界问题，划定最前和最后以及当前3个指针
+        int l = 0 , r = nums.size() - 1;
+        int i = 0;
+        while(i <= r)
+        {
+            if(nums[i] == 0)
+            {
+                int k = nums[i];
+                nums[i] = nums[l];
+                nums[l++] = k;
+            }
+            if(nums[i] == 2)
+            {
+                int k = nums[i];
+                nums[i] = nums[r];
+                nums[r--] = k;
+            }
+            else i++;
+        }
+    }
+};
