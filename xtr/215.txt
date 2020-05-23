@@ -1,0 +1,39 @@
+/**
+ *算法题目
+215、数组中的第K个最大元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        vector<int> h(k , INT_MIN);
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            if(nums[i] > h[0])
+            {
+                h[0] = nums[i];
+                int j = 0 , pos = 0;
+                while(1)
+                {
+                    if(j*2 + 1 < k && h[j*2 + 1] < h[j])
+                        pos = j*2 + 1;
+                    if(j*2 + 2 < k && h[j*2 + 2] < h[pos])
+                        pos = j*2 + 2;
+                    if(pos == j)
+                        break;
+                    else
+                    {
+                        int t = h[j];
+                        h[j] = h[pos];
+                        h[pos] = t;
+                        j = pos;
+                    }
+                }
+                //cout<<h[0]<<" "<<h[k-1]<<endl;
+            }
+                
+        }
+        return h[0];
+    }
+};
