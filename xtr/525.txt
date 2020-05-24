@@ -1,0 +1,24 @@
+/**
+ *算法题目
+525、连续数组
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        unordered_map<int , int> Hash;
+        int sum = 0 , maxlen = 0;
+        Hash[0] = -1;
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            if(nums[i] == 1)
+                sum++;
+            else sum--;
+            if(Hash.count(sum) == 0)
+                Hash[sum] = i; //不在hash表中
+            else maxlen = max(maxlen , i - Hash[sum]);//如果在hash表中，则2个hash之间的0和1一定相等
+        }
+        return maxlen;
+    }
+};
