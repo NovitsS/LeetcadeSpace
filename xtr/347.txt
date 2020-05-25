@@ -1,0 +1,28 @@
+/**
+ *算法题目
+347、前k个高频元素
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        vector<int> res;
+        map<int , int> h;
+        for(int i : nums)
+            h[i]++;
+        priority_queue<pair<int , int>, vector<pair<int , int>> , greater<pair<int , int>>> minheap;
+        for(auto i : h)
+        {
+            minheap.push(pair<int , int>(i.second , i.first));
+            if(minheap.size() > k)
+                minheap.pop();   
+        }
+        while(k--)
+        {
+            res.push_back(minheap.top().second);
+            minheap.pop();
+        }
+        return res;    
+    }
+};
