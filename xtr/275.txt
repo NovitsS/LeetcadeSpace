@@ -1,0 +1,28 @@
+/**
+ *算法题目
+275、H指数II
+ */
+
+//TODO:code
+class Solution {
+public:
+    int hIndex(vector<int>& citations) {
+        int low = 0 , high = citations.size() - 1;
+        int res = 0;
+        while(low <= high)
+        {
+            int mid = low + ((high - low) >> 1);
+            int h = citations.size() - mid;
+            //cout<<mid<<" "<<citations[mid]<<" "<<h<<endl;
+            if(citations[mid] < h)
+                low = mid + 1;
+            else if(citations[mid] >= h)
+            {
+//现在的h是满足条件的，看看能否找到更高的h
+                res = h;
+                high = mid - 1;
+            }
+        }
+        return res;
+    }
+};
