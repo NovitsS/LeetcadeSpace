@@ -1,0 +1,54 @@
+/**
+ *算法题目
+147、对链表进行插入排序
+ */
+
+//TODO:code
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* insertionSortList(ListNode* head) {
+        if(!head || !head->next)
+            return head;
+        ListNode *l = head , *s = head->next , *f = s->next;
+        ListNode *p = head , *q = head;
+        while(s)
+        {
+            p = head , q = head;
+            while(p != s->next && p->val <= s->val)
+            {
+                q = p;
+                p = p->next;
+            }
+            if(q == s)
+            {
+                l = s;
+                s = f;
+                if(f)
+                    f = f->next;
+            }
+            else
+            {
+               l->next = s->next;
+               if(p == head)
+                   head = s;
+                else q->next = s;
+                s->next = p;
+                //cout<<l->val<<" "<<s->val<<" "<<q->val<<" "<<p->val<<" ";
+                s = f;
+                if(f)
+                    f = f->next;
+            }
+            
+                
+        }
+        return head;
+    }
+};
