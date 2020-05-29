@@ -1,0 +1,41 @@
+/**
+ *算法题目
+198、打家劫舍
+ */
+
+//TODO:code
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int res = 0;
+        if(nums.size() == 0)
+            return res;
+        res = nums[0];
+        int sum = 0 , flag = 0;
+        for(int i = 1 ; i < nums.size() ; i++)
+        {
+            if(flag == 0)
+            {
+                if(res < sum + nums[i])
+                {
+                    int t = res;
+                    res = sum + nums[i];
+                    sum = t;
+                    flag = 0;
+                }
+                else
+                {
+                    flag = 1;
+                }
+            }
+            else
+            {
+                sum = res;
+                res += nums[i];
+                flag = 0;
+            }
+            //cout<<sum<<" "<<res<<endl;
+        }
+        return res;
+    }
+};
