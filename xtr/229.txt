@@ -1,0 +1,54 @@
+/**
+ *算法题目
+229、求众数II
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        vector<int> res;
+        //1/3摩尔投票法，每次拿走3个不一样的数剩下的2个是a，b
+        int a = 0 , b = 0;
+        int suma = 0 , sumb = 0;
+        for(int k : nums)
+        {
+            if(k == a)
+            {
+                suma++;
+            }
+            else if(k == b)
+            {
+                sumb++;
+            }
+            else if(suma == 0)
+            {
+                a = k;
+                suma++;
+            }
+            else if(sumb == 0)
+            {
+                b = k;
+                sumb++;
+            }
+            else 
+            {
+                suma--;
+                sumb--;
+            }
+        }
+        suma = sumb = 0;
+        for(int k : nums)
+        {
+            if(k == a)
+                suma++;
+            else if(k == b)
+                sumb++;
+        }
+        if(suma * 3 > nums.size())
+            res.push_back(a);
+        if(sumb * 3 > nums.size())
+            res.push_back(b);
+        return res;
+    }
+};
