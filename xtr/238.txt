@@ -1,0 +1,26 @@
+/**
+ *算法题目
+238、除自身以外数组的乘积
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        vector<int> res(nums.size() , 1);
+        int left = 1 , right = 1;
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            //左边相乘
+            res[i] *= left;
+            left = left * nums[i];
+            
+            //右边相乘
+            res[nums.size() - 1 - i] *= right;
+            right = right * nums[nums.size() - 1 - i];
+            
+            //cout<<res[i]<<" "<<res[nums.size() - 1 - i]<<endl;
+        }
+        return res;
+    }
+};
