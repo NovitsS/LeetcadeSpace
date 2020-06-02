@@ -1,0 +1,28 @@
+/**
+ *算法题目
+260、只出现一次的数字
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> singleNumber(vector<int>& nums) {
+        int bitmap = 0 , diff = 0;
+        for(int k : nums)
+            bitmap = bitmap ^ k;
+        diff = bitmap & (-bitmap); //保留最后一位的1，这个1为某个数的那一位的
+        int a = 0 , b = 0;
+        for(int k : nums)
+        {
+            //找出那个数
+            if((diff & k) != 0)
+            {
+               a = a ^ k;
+            }
+            //cout<<k<<" "<<a<<" "<<diff<<" "<<(diff & k)<<endl;
+        }
+        //另一个数
+        b = bitmap ^ a; 
+        return {a , b};
+    }
+};
