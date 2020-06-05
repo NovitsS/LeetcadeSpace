@@ -1,0 +1,27 @@
+/**
+ *算法题目
+1464、数组中2元素的最大乘积
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        /*
+        sort(nums.begin() , nums.end());
+        return (nums[nums.size() - 1] - 1) * (nums[nums.size() - 2] - 1);
+        */
+        
+        int m1 = 0 , m2 = 0;
+        for(int k : nums)
+        {
+            if(m1 <= k)
+                m2 = m1;
+            else
+                m2 = max(k , m2);
+            m1 = max(k , m1);
+            //cout<<m1<<" "<<m2<<endl;
+        }
+        return (m1 - 1)*(m2 - 1);  
+    }
+};
