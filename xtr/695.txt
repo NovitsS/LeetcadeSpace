@@ -1,0 +1,41 @@
+/**
+ *算法题目
+695、岛屿的最大面积
+ */
+
+//TODO:code
+class Solution {
+public:
+    int getArea(vector<vector<int>>& grid , int i , int j)
+    {
+        if(i < 0 || i == grid.size())
+            return 0;
+        if(j < 0 || j == grid[0].size())
+            return 0;
+        if(grid[i][j] == 1)
+        {
+            grid[i][j] = 0;
+            int area = 1;
+            area += getArea(grid, i+1 , j);
+            area += getArea(grid, i , j+1);
+            area += getArea(grid, i-1 , j);
+            area += getArea(grid, i , j-1);
+            return area;
+        }
+        return 0;
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        int res = 0;
+        for(int i = 0 ; i < grid.size() ; i++)
+        {
+            for(int j = 0 ; j < grid[0].size() ; j++)
+            {
+                if(grid[i][j] == 1)
+                {
+                    res = max(res , getArea(grid, i , j));
+                }
+            }
+        }
+        return res;
+    }
+};
