@@ -1,0 +1,113 @@
+/**
+ *算法题目
+990、等式方程的可满足性
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool equationsPossible(vector<string>& equations) {
+        //0为初始、1为相等，-1为不等
+        vector<vector<int>> in(26 , vector<int>(26 , 0));
+        for(string s : equations)
+        {
+            int i = s[0] - 'a' , j = s[3] - 'a';
+            if(s[1] == '=')
+            {
+                if(in[i][j] == -1 || in[j][i] == -1)
+                    return false;
+                else in[i][j] = 1 , in[j][i] = 1;
+                for(int k = 0 ; k < 26 ; k++)
+                {
+                    if(in[i][k] == 1)
+                    {
+                        if(in[k][j] == -1)
+                            return false;
+                        else
+                        {
+                            for(int kk = 0 ; kk < 26 ; kk++)
+                            {
+                                if((in[k][kk] == 1 && in[i][kk] == -1) || (in[k][kk] == -1 && in[i][kk] == 1))
+                                    return false;
+                                else
+                                {
+                                    if(in[k][kk] == 0)
+                                        in[k][kk] = in[i][kk];
+                                    else in[i][kk] = in[k][kk];
+                                }
+                            }
+                        }
+                    }
+                    if(in[j][k] == 1)
+                    {
+                        if(in[k][i] == -1)
+                            return false;
+                        else
+                        {
+                            for(int kk = 0 ; kk < 26 ; kk++)
+                            {
+                                if((in[k][kk] == 1 && in[j][kk] == -1) || (in[k][kk] == -1 && in[j][kk] == 1))
+                                    return false;
+                                else
+                                {
+                                    if(in[k][kk] == 0)
+                                        in[k][kk] = in[j][kk];
+                                    else in[j][kk] = in[k][kk];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if(i == j || in[i][j] == 1 || in[j][i] == 1)
+                    return false;
+                else in[i][j] = -1 , in[j][i] = -1;
+                for(int k = 0 ; k < 26 ; k++)
+                {
+                    if(in[i][k] == 1)
+                    {
+                        if(in[k][j] == 1)
+                            return false;
+                        else
+                        {
+                            for(int kk = 0 ; kk < 26 ; kk++)
+                            {
+                                if((in[k][kk] == 1 && in[i][kk] == -1) || (in[k][kk] == -1 && in[i][kk] == 1))
+                                    return false;
+                                else
+                                {
+                                    if(in[k][kk] == 0)
+                                        in[k][kk] = in[i][kk];
+                                    else in[i][kk] = in[k][kk];
+                                }
+                            }
+                        }
+                    }
+                    if(in[j][k] == 1)
+                    {
+                        if(in[k][i] == 1)
+                            return false;
+                        else
+                        {
+                            for(int kk = 0 ; kk < 26 ; kk++)
+                            {
+                                if((in[k][kk] == 1 && in[j][kk] == -1) || (in[k][kk] == -1 && in[j][kk] == 1))
+                                    return false;
+                                else
+                                {
+                                    if(in[k][kk] == 0)
+                                        in[k][kk] = in[j][kk];
+                                    else in[j][kk] = in[k][kk];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //cout<<i<<" "<<j<<" "<<in[i][j]<<" "<<in[j][i]<<endl;
+        }
+        return true;
+    }
+};
