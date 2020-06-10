@@ -1,0 +1,25 @@
+/**
+ *算法题目
+96、不同的二叉搜索树
+ */
+
+//TODO:code
+class Solution {
+public:
+    int numTrees(int n) {
+        //n个节点，如果以i为根节点，G(n) = f(1)+f(2)+...+f(n)
+        //左边i-1个，右边n-i个，f(i) = G(i-1)*G(n-i)
+        //G(n) = G(0)*G(n-1)+G(1)G(n-2)+G(2)G(n-3)+...+G(n-1)G(0)
+        vector<int> dp(n+1 , 0);
+        dp[0] = 1;
+        dp[1] = 1;
+        for(int i = 2 ; i <= n ; i++)
+        {
+            for(int j = 0 ; j < i ; j++)
+            {
+                dp[i] += dp[j]*dp[i-j-1];
+            }
+        }
+        return dp[n];
+    }
+};
