@@ -1,0 +1,36 @@
+/**
+ *算法题目
+542、01矩阵
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
+        int n = matrix.size() , m = matrix[0].size();
+        vector<vector<int>> dp(n , vector<int>(m , 0));
+        for(int i = 0 ; i < n ; i++)
+        {
+            for(int j = 0 ; j < m ; j++)
+            {
+                if(matrix[i][j] == 0)
+                    continue;
+                int t = i == 0 ? 10001 : dp[i-1][j] + 1;
+                int l = j == 0 ? 10001 : dp[i][j-1] + 1;
+                dp[i][j] = min(t , l);
+            }
+        }
+        for(int i = n - 1 ; i >= 0 ; i--)
+        {
+            for(int j = m - 1 ; j >= 0 ; j--)
+            {
+                if(matrix[i][j] == 0)
+                    continue;
+                int b = i == n - 1 ? 10001 : dp[i+1][j] + 1;
+                int r = j == m - 1 ? 10001 : dp[i][j+1] + 1;
+                dp[i][j] = min(dp[i][j] , min(b , r));
+            }
+        }
+        return dp;
+    }
+};
