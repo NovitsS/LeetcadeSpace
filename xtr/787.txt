@@ -1,0 +1,27 @@
+/**
+ *算法题目
+787、K站中转内最便宜的航班
+ */
+
+//TODO:code
+class Solution {
+public:
+    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int K) {
+        //dp[src][i]表示至多经过i站到达src最少费用
+        vector<vector<int>> dp(n , vector<int>(K+2 , INT_MAX));
+        //到达一个目的为1个城市i
+        for(int i = 0 ; i < K+2 ; i++)
+            dp[src][i] = 0;
+        //至少到达一个城市
+        for(int i = 1 ; i < K+2 ; i++)
+        {
+            for(auto &k : flights)
+            {
+                //如果经过i-1站能到k[0]
+                if(dp[k[0]][i-1] != INT_MAX)
+                    dp[k[1]][i] = min(dp[k[1]][i] , dp[k[0]][i-1] + k[2]);
+            }
+        }
+        return dp[dst][K+1] == INT_MAX ? -1 : dp[dst][K+1];
+    }
+};
