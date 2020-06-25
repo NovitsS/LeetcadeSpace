@@ -1,0 +1,22 @@
+/**
+ *算法题目
+面试题08.11、硬币
+ */
+
+//TODO:code
+class Solution {
+public:
+    int waysToChange(int n) {
+        vector<int> dp(n+1 , 0);
+        dp[0] = 1;
+        int arr[] = {1 , 5 , 10 , 25};
+        for(int i = 0 ; i < 4 ; i++)
+        {
+            for(int j = arr[i] ; j <= n ; j++)
+            {
+                dp[j] = (dp[j] + dp[j - arr[i]])%1000000007;
+            }
+        }
+        return dp[n];
+    }
+};
