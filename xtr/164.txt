@@ -1,0 +1,52 @@
+/**
+ *算法题目
+164、最大间距
+ */
+
+//TODO:code
+class Solution {
+public:
+    struct bucket_val
+    {
+        int min_val = INT_MAX;
+        int max_val = INT_MIN;
+        bool flag = false;
+    };
+    int maximumGap(vector<int>& nums) {
+        int n = nums.size();
+        if(n < 2)
+            return 0;
+        int minnum = *min_element(nums.begin() , nums.end());
+        int maxnum = *max_element(nums.begin() , nums.end());
+        if(maxnum == minnum)
+            return 0;
+        //每个桶的间隔
+        int interval = (maxnum - minnum)/(nums.size() - 1);
+        if(interval == 0)
+            interval = 1;
+        //一共有多少个桶
+        int bucket_size = (maxnum - minnum)/interval + 1;
+        vector<bucket_val> bucket(bucket_size);
+        //每个桶中只保存最大值和最小值
+        for(int k : nums)
+        {
+            int i = (k - minnum)/interval;
+            bucket[i].flag = true;
+            bucket[i].min_val = min(bucket[i].min_val , k);
+            bucket[i].max_val = max(bucket[i].max_val , k);
+        }
+        int pre = minnum;
+        int res = 0;
+        for(auto &v : bucket)
+        {
+            if(v.flag)
+            {
+                //后一个最小减去前一个最大
+                int in = v.min_val - pre;
+                pre = v.max_val;
+                res = max(res , in);
+            }
+        }
+        return res;
+    }
+};
