@@ -1,0 +1,21 @@
+/**
+ *算法题目
+jz42、连续子数组的最大和
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int res = nums[0];
+        int sum = 0;
+        for(int k : nums)
+        {
+            if(sum < 0)
+                sum = 0;
+            sum += k;
+            res = max(res , sum);
+        }
+        return res;
+    }
+};
