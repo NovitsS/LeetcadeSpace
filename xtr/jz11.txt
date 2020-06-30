@@ -1,0 +1,27 @@
+/**
+ *算法题目
+jz60、旋转数组的最小数字
+ */
+
+//TODO:code
+class Solution {
+public:
+    int minArray(vector<int>& numbers) {
+        int l = 0 , r = numbers.size() - 1;
+        while(l < r)
+        {
+            int mid = ((r - l)>>1) + l;
+            //cout<<l<<" "<<r<<" "<<" "<<mid<<endl;
+            //左边比右边大
+            if(numbers[mid] > numbers[r])
+                l = mid + 1;
+            //逼近mid
+            else if(numbers[mid] < numbers[r])
+                r = mid;
+            //慢慢逼近
+            else if(numbers[mid] == numbers[r])
+                r = r - 1;
+        }
+        return numbers[l];
+    }
+};
