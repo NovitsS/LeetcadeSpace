@@ -1,0 +1,17 @@
+/**
+ *算法题目
+1480、一维数组动态和
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+        vector<int> res(nums.size() , 0);
+        for(int i = 0 ; i < nums.size() ; i++)
+        {
+            res[i] = i == 0 ? nums[i] : nums[i] + res[i-1];
+        }
+        return res;
+    }
+};
