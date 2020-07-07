@@ -1,0 +1,30 @@
+/**
+ *算法题目
+713、乘积小于K的子数组
+ */
+
+//TODO:code
+class Solution {
+public:
+    int numSubarrayProductLessThanK(vector<int>& nums, int k) {
+        if(k <= 1)
+            return 0;
+        int res = 0;
+        //双指针问题，l-r区间内所有都满足，如果溢出，l开始后移
+        int l = 0;
+        int m = 1;//l-r内乘积
+        for(int r = 0 ; r < nums.size() ; r++)
+        {
+            m *= nums[r];
+            while(m >= k)
+            {
+                m = m/nums[l];
+                l++;
+            }
+            //每次r往后移，子数组则都需要带上最后一个元素
+            //以l起头的所有数组的长度
+            res += r - l + 1;
+        }
+        return res;
+    }
+};
