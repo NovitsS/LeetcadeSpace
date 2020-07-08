@@ -1,0 +1,42 @@
+/**
+ *算法题目
+923、三数之和的多种可能
+ */
+
+//TODO:code
+class Solution {
+public:
+    int threeSumMulti(vector<int>& A, int target) {
+        vector<long> c(101 , 0);
+        for(int k : A)
+            c[k]++;
+        int res = 0 ;
+        int mod = 1e9 + 7;
+        int n = min(target , 100);
+        for(int i = 0 ; i <= n; i++)
+        {
+            int j = i , k = n;
+            while(j <= k)
+            {
+                int sum = i + j + k;
+                if(sum < target)
+                    j++;
+                else if(sum > target)
+                    k--;
+                else
+                {
+                    if(i == j && j == k)
+                        res = (res + c[i] * (c[i] - 1) * (c[i] - 2) / 6)%mod;
+                    else if(i == j && j != k)
+                        res = (res + c[i] * (c[i] - 1) / 2 * c[k])%mod;
+                    else if(i != j && j == k)
+                        res = (res + c[i] * c[j] * (c[j] - 1) / 2)%mod;
+                    else res = (res + c[i] * c[j] * c[k])%mod;
+                    j++;
+                    k--;
+                }
+            }
+        }
+        return res;
+    }
+};
