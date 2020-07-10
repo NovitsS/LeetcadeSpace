@@ -1,0 +1,27 @@
+/**
+ *算法题目
+223、矩形面积
+ */
+
+//TODO:code
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int res = 0;
+        int l1 = min(A , C) , r1 = max(A , C);
+        int b1 = min(B , D) , t1 = max(B , D);
+        int l2 = min(E , G) , r2 = max(E , G);
+        int b2 = min(F , H) , t2 = max(F , H);
+        int l = max(l1 , l2);
+        int r = min(r1 , r2);
+        int t = min(t1 , t2);
+        int b = max(b1 , b2);
+        int s = 0;
+        if(l >= r || b >= t)
+            s = 0;
+        else s = (t - b)*(r - l);
+        //cout<<l<<" "<<r<<" "<<b<<" "<<t;
+        int s1 = (t2 - b2)*(r2 - l2) - s;
+        return (t1 - b1)*(r1 - l1) + s1;
+    }
+};
