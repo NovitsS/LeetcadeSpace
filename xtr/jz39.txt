@@ -1,0 +1,22 @@
+/**
+ *算法题目
+剑指offer39、数组中出现次数超过一半的数字
+ */
+
+//TODO:code
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int cnt = 0;
+        int res = nums[0];
+        for(int k : nums)
+        {
+            if(cnt == 0)
+                res = k;
+            if(k == res)
+                cnt++;
+            else cnt--;
+        }
+        return res;   
+    }
+};
