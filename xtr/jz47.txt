@@ -1,0 +1,35 @@
+/**
+ *算法题目
+jz47、礼物的最大价值
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maxValue(vector<vector<int>>& grid) {
+        if(grid.size() == 0)
+            return 0;
+        vector<vector<int>> res(grid.size() , vector<int>(grid[0].size() , 0));
+        res[0][0] = grid[0][0];
+        for(int i = 0 ; i < res.size() ; i++)
+        {
+            for(int j = 0 ; j < res[i].size() ; j++)
+            {
+                if(i == 0)
+                {
+                    if(j > 0)
+                        res[i][j] = res[i][j-1] + grid[i][j];
+                }
+                else if(j == 0)
+                {
+                    res[i][j] = res[i-1][j] + grid[i][j];
+                }
+                else
+                {
+                    res[i][j] = max(res[i-1][j] , res[i][j-1]) + grid[i][j];
+                }
+            }
+        }
+        return res[res.size()-1][res[0].size()-1];
+    }
+};
