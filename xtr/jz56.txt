@@ -1,0 +1,31 @@
+/**
+ *算法题目
+jz56、数组中数字出现的次数
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<int> singleNumbers(vector<int>& nums) {
+        int s = 0;
+        for(int k : nums)
+            s = s ^ k;
+        int flag = s & (-s);
+        int a = 0 , b = 0;
+        //cout<<flag<<endl;
+        for(int k : nums)
+        {
+            if((flag&k) == 0)
+            {
+               //cout<<k<<"a "<<a<<endl;
+               a = a ^ k; 
+            }
+            else
+            {
+                //cout<<k<<"b "<<b<<endl;
+                b = b ^ k;
+            }
+        }
+        return {a , b};
+    }
+};
