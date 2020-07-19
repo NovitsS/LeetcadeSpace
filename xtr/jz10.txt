@@ -1,0 +1,23 @@
+/**
+ *算法题目
+jz10、斐波那契数列
+ */
+
+//TODO:code
+class Solution {
+public:
+    int fib(int n) {
+        if(n <= 1)
+            return n;
+        int mod = 1e9+7;
+        long a = 0 , b = 1;
+        int res = 0;
+        for(int i = 2 ; i <= n ; i++)
+        {
+            res = (a + b)%mod;
+            a = b;
+            b = res;
+        }
+        return res;
+    }
+};
