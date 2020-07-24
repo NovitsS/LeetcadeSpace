@@ -1,0 +1,26 @@
+/**
+ *算法题目
+1446、连续字符
+ */
+
+//TODO:code
+class Solution {
+public:
+    int maxPower(string s) {
+        int res = 0;
+        int sum = 0;
+        char c0 = s[0];
+        for(char c : s)
+        {
+            if(c == c0)
+                sum++;
+            else
+            {
+                sum = 1;
+                c0 = c;
+            }
+            res = max(sum , res);
+        }
+        return res;
+    }
+};
