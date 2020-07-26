@@ -1,0 +1,12 @@
+/**
+ *算法题目
+jz65、不用加减乘除做加法
+ */
+
+//TODO:code
+class Solution {
+public:
+    int add(int a, int b) {
+        return b == 0 ? a : add((a ^ b),(unsigned int)(a & b) << 1);
+    }
+};
