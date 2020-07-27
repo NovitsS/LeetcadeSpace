@@ -1,0 +1,30 @@
+/**
+ *算法题目
+面试题08.08、有重复字符串的排列组合
+ */
+
+//TODO:code
+class Solution {
+public:
+    vector<string> res;
+    void backtrack(string &s , int begin)
+    {
+        if(begin >= s.size())
+            res.push_back(s);
+        for(int i = begin ; i < s.size() ; i++)
+        {
+            //cout<<begin<<" "<<i<<endl;
+            swap(s[i] , s[begin]);
+            backtrack(s , begin + 1);
+            swap(s[i] , s[begin]);
+        }
+    }
+    
+    vector<string> permutation(string S) {
+        backtrack(S , 0);
+        sort(res.begin() , res.end());
+        auto it = unique(res.begin() , res.end());
+        res.erase(it , res.end());
+        return res;
+    }
+};
