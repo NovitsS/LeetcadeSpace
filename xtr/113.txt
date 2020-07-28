@@ -1,0 +1,46 @@
+/**
+ *算法题目
+113、路径总和
+ */
+
+//TODO:code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> res;
+    void travel(TreeNode* root, vector<int> &s , int sum)
+    {
+        if(!root)
+            return;
+        if(!root->left && !root->right)
+        {
+            if(root->val == sum)
+            {
+                s.push_back(root->val);
+                res.push_back(s);
+                s.pop_back();
+            }
+            return;
+        }
+        s.push_back(root->val);
+        if(root->left)
+            travel(root->left , s ,sum - root->val);
+        if(root->right)
+            travel(root->right , s , sum - root->val);
+        s.pop_back();
+        return;
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        vector<int> s;
+        travel(root, s , sum);
+        return res;
+    }
+};
