@@ -1,0 +1,46 @@
+/**
+ *算法题目
+705、设计哈希集合
+ */
+
+//TODO:code
+class MyHashSet {
+public:
+    vector<int> H;
+    /** Initialize your data structure here. */
+    MyHashSet() {
+    }
+    
+    void add(int key) {
+        H.push_back(key);
+    }
+    
+    void remove(int key) {
+         for(int i = 0 ; i < H.size() ; i++)
+        {
+            if(H[i] == key)
+            {
+                H.erase(H.begin()+i);
+                i--;
+            }
+        }
+    }
+    
+    /** Returns true if this set contains the specified element */
+    bool contains(int key) {
+        for(int i = 0 ; i < H.size() ; i++)
+        {
+            if(H[i] == key)
+                return true;
+        }
+        return false;
+    }
+};
+
+/**
+ * Your MyHashSet object will be instantiated and called as such:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
