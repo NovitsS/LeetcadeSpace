@@ -1,0 +1,39 @@
+/**
+ *算法题目
+337、打家劫舍III
+ */
+
+//TODO:code
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int rob(TreeNode* root) {
+        int y = 0 , n = 0;
+        dp(root , y , n);
+        return max(y , n);
+    }
+    void dp(TreeNode* root , int& y , int& n)
+    {
+        if(!root)
+        {
+            y = 0;
+            n = 0;
+            return;
+        }
+        int left_y , left_n;
+        int right_y , right_n;
+        dp(root->left , left_y , left_n);
+        dp(root->right , right_y , right_n);
+        y = root->val + left_n + right_n; //不计root值
+        n = max(left_y , left_n) + max(right_y , right_n);//计上root值
+        return;
+    }
+};
