@@ -1,0 +1,17 @@
+/**
+ *算法题目
+LCP06、拿硬币
+ */
+
+//TODO:code
+class Solution {
+public:
+    int minCount(vector<int>& coins) {
+        int res = 0;
+        for(int i = 0 ; i < coins.size() ; i++)
+        {
+            res += (coins[i]%2 ? coins[i]/2 + 1 : coins[i]/2);
+        }
+        return res;
+    }
+};
