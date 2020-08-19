@@ -1,0 +1,27 @@
+/**
+ *算法题目
+647、回文子串
+ */
+
+//TODO:code
+class Solution {
+public:
+    int res = 0;
+    int countSubstrings(string s) {
+        for(int i = 0 ; i < s.size() ; i++)
+        {
+            count(s, i, i);
+            count(s, i, i+1);
+        }
+        return res;
+    }
+    void count(string s, int begin, int end)
+    {
+        while(begin >= 0 && end < s.size() && s[begin] == s[end])
+        {
+            res++;
+            begin--;
+            end++;
+        }
+    }
+};
