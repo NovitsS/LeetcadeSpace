@@ -1,0 +1,21 @@
+/**
+ *算法题目
+647、回文子串
+ */
+
+//TODO:code
+class Solution {
+public:
+    bool threeConsecutiveOdds(vector<int>& arr) {
+        int sum = 0;
+        for(int i = 0 ; i < arr.size() ; i++)
+        {
+            if(arr[i]%2)
+                sum++;
+            else sum = 0;
+            if(sum == 3)
+                return true;
+        }
+        return false;
+    }
+};
